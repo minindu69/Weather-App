@@ -1,7 +1,5 @@
 "use strict";
 
-const searchBtn = document.querySelector('.search_btn');
-
 //get user Geolocation
 const fetchUserLocation = async () => {
   if (!navigator.geolocation) {
@@ -28,7 +26,7 @@ const fetchUserLocation = async () => {
 };
 
 //handle location error
-const handleLocationError = error =>{
+const handleLocationError = (error) => {
   switch (error.code) {
     case error.PERMISSION_DENIED:
       console.error("User denied the request for Geolocation.");
@@ -43,33 +41,26 @@ const handleLocationError = error =>{
       console.error("An unknown error occurred.");
       break;
   }
-}
-
-const getUserLocation = async () => {
-    try {
-        const location = await fetchUserLocation();
-        // console.log("User Location:", location);
-        return location;
-    } catch (error) {
-        handleLocationError(error);
-        return null;
-    }
 };
 
-// (async() => {
-//   const location = await getUserLocation();
-//   console.log('user location', location);
-// })();
-
-// https://api.weatherapi.com/v1/forecast.json?q=tangalla&days=1&alerts=yes&aqi=yes&key=1234
+export const getUserCurrentLocation = async () => {
+  try {
+    const location = await fetchUserLocation();
+    // console.log("User Location:", location);
+    return Object.values(location).join();
+  } catch (error) {
+    handleLocationError(error);
+    return null;
+  }
+};
 
 // const apiKey = '1234';
-const apiKey = '436b043e571f453f84e54432251606';
+const apiKey = "436b043e571f453f84e54432251606";
 const basURL = "https://api.weatherapi.com/v1";
 
 //fetch data
 const fetchWeatherData = async (endpoint, params = {}) => {
-  const query = new URLSearchParams({key: apiKey, ...params}).toString();
+  const query = new URLSearchParams({ key: apiKey, ...params }).toString();
   const url = `${basURL}/${endpoint}?${query}`;
   console.log(url);
 
@@ -84,45 +75,28 @@ const fetchWeatherData = async (endpoint, params = {}) => {
     console.error("Fetch error:", error.message);
     return null;
   }
-
 };
 
-// {
-//   city: "Tangalle",
-//   latitude: 6.024,
-//   longitude: 80.7911,
-// }
+//preffered city
+const prefferedCity = "Tangalla";
 
 //get current weather
-const getCurrentWeather =  async city => {
-  return await fetchWeatherData("current.json", {q: city});
-}
+export const getCurrentWeather = async (city = prefferedCity) => {
+  return await fetchWeatherData("current.json", { q: city });
+};
 
 //get forecast weather
-const getForecastWeather = async (city, days = 1) => {
+export const getForecastWeather = async (city = prefferedCity, days = 1) => {
   const params = { q: city, days, alerts: "yes", aqi: "yes" };
   return await fetchWeatherData("forecast.json", params);
 };
 
 //search weather
-const getSearchedWeather = async (city, days = 1) => {
-  const params = { q: city, days, alerts: "yes", aqi: "yes" };
-  return await fetchWeatherData("search.json", params);
-};
-
-//initially load data
-(async () => {
-  const currentWeatherData = await getCurrentWeather('Tangalla');
-  console.log(currentWeatherData);
-
-  const forecastWeatherData = await getForecastWeather('Tangalla');
-  console.log(forecastWeatherData);
-})();
-
-//when clicked the search button
-const searchedWeatherData = async () => await getSearchedWeather('Tangalla');
-
-// searchBtn.addEventListener('click', searchedWeatherData);
+// export const getSearchedWeather = async (city = prefferedCity, days = 1) => {
+//   const params = { q: city, days, alerts: "yes", aqi: "yes" };
+//   return await fetchWeatherData("search.json", params);
+// };
+export const getSearchedWeather = async (city = prefferedCity, days = 1) => await getForecastWeather(city, days);
 
 
 
