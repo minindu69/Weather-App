@@ -142,6 +142,7 @@ main{
 }
 @media (max-width: 450px) {
   main {
+    min-width: 100%;
       /* margin: 0rem 4rem !important; */
       /* grid-template-columns: 1fr; Stack columns */
   }
