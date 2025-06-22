@@ -141,10 +141,18 @@ main{
 
 }
 @media (max-width: 450px) {
+  body{
+    padding: 0rem;
+  }
+  
   main {
     min-width: 100%;
       /* margin: 0rem 4rem !important; */
       /* grid-template-columns: 1fr; Stack columns */
+  }
+
+  .container{
+    border-radius: 0rem !important;
   }
 
   /* .right_section{
