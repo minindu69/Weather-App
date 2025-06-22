@@ -4,15 +4,193 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather-App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
-    <input type="text" class="search_input" />
-    <button class="search_btn">Search</button>
+    <main class="container d-grid p-4 rounded-4">
+      <!-- Left Section -->
+      <div class="left_section d-grid">
+          <div class="search bg-success">
+              <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Enter location" aria-label="Enter locationn" aria-describedby="button-addon2">
+                  <button class="btn btn-primary" type="button" id="button-addon2">Button</button>
+                </div>
+          </div>
+          <div class="weather_content--left d-grid">
+              <div class="current_temp bg-primary d-flex flex-column text-center justify-content-start gap-2 mt-4 py-5 px-2">
+                  <h1 class="temp">28 c</h1>
+                  <p class="weather_status">Rainy Day</p>
+                  <p>Today, expect a rainy day with temperatures reaching a maximum of 28C.Make sure to grab your umbrella and raincoat before heading out.</p>
+              </div>
+              <div class="other_content bg-secondary d-grid gap-4 mt-4">
+                  <div class="card card_other flex-column p-2 flex-fill">
+                      <div class="card_title bg-primary">
+                          <h4> <span>Icon</span> Card Title</h4>
+                      </div>
+                      <div class="card-body p-0 bg-success flex-fill">
+                          <h2>3</h2>
+                          <p>Moderate</p>
+                          <p>Use sun protection until 16:00</p>
+                      </div>
+                  </div>
+                  <div class="card card_other flex-column p-2 flex-fill">
+                      <div class="card_title bg-primary">
+                          <h4> <span>Icon</span> Card Title</h4>
+                      </div>
+                      <div class="card-body p-0 bg-success flex-fill">
+                          <h2>3</h2>
+                          <p>Moderate</p>
+                          <p>Use sun protection until 16:00</p>
+                      </div>
+                  </div>
+                  <div class="card card_other flex-column p-2 flex-fill">
+                      <div class="card_title bg-primary">
+                          <h4> <span>Icon</span> Card Title</h4>
+                      </div>
+                      <div class="card-body p-0 bg-success flex-fill">
+                          <h2>3</h2>
+                          <p>Moderate</p>
+                          <p>Use sun protection until 16:00</p>
+                      </div>
+                  </div>
+                  <div class="card card_other flex-column p-2 flex-fill">
+                      <div class="card_title bg-primary">
+                          <h4> <span>Icon</span> Card Title</h4>
+                      </div>
+                      <div class="card-body p-0 bg-success flex-fill">
+                          <h2>3</h2>
+                          <p>Moderate</p>
+                          <p>Use sun protection until 16:00</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Right Section -->
+      <div class="right_section bg-warning d-grid">
+          <!-- data-1 -->
+          <div class="forecast_data forecast_data--1 d-flex flex-column">
+              <div class="title p-2">
+                  <h4> <span>Icon</span> Title</h4>
+              </div>
+              <div class="data flex-fill p-2 me-2 pe-0 d-flex align-content-center justify-content-between gap-4">
+                  <div class="card card_forecast d-inline-block text-light d-flex align-content-center justify-content-around">
+                      <p>Now</p>
+                      <p>28C</p>
+                      <span>Icon</span>
+                  </div>
+                  <!-- ---------- -->
+                  <div class="card card_forecast d-inline-block text-light d-flex align-content-center justify-content-around">
+                      <p>Then</p>
+                      <p>28C</p>
+                      <span>Icon</span>
+                  </div>
+                  <div class="card card_forecast d-inline-block text-light d-flex align-content-center justify-content-around">
+                      <p>Then</p>
+                      <p>28C</p>
+                      <span>Icon</span>
+                  </div>
+                  <div class="card card_forecast d-inline-block text-light d-flex align-content-center justify-content-around">
+                      <p>Then</p>
+                      <p>28C</p>
+                      <span>Icon</span>
+                  </div>
+                  <div class="card card_forecast d-inline-block text-light d-flex align-content-center justify-content-around">
+                      <p>Then</p>
+                      <p>28C</p>
+                      <span>Icon</span>
+                  </div>
+                  <div class="card card_forecast d-inline-block text-light d-flex align-content-center justify-content-around">
+                      <p>Then</p>
+                      <p>28C</p>
+                      <span>Icon</span>
+                  </div>
+                  <!-- ------------------- -->
+              </div>
+          </div>
+          
+          <!-- data-2 -->
+          <div class="forecast_data forecast_data--2 d-flex flex-column">
+              <div class="title p-2">
+                  <h4> <span>Icon</span> Title</h4>
+              </div>
+              <div class="data flex-fill p-2 py-4 me-2 pe-0 d-flex align-content-center justify-content-between gap-4">
+                  <div class="card card_forecast d-inline-block text-light d-flex align-content-center justify-content-around">
+                      <p>Now</p>
+                      <p>28C</p>
+                      <span>Icon</span>
+                  </div>
+                  <!-- ---------- -->
+                  <div class="card card_forecast d-inline-block text-light d-flex align-content-center justify-content-around">
+                      <p>Then</p>
+                      <p>28C</p>
+                      <span>Icon</span>
+                  </div>
+                  <div class="card card_forecast d-inline-block text-light d-flex align-content-center justify-content-around">
+                      <p>Then</p>
+                      <p>28C</p>
+                      <span>Icon</span>
+                  </div>
+                  <div class="card card_forecast d-inline-block text-light d-flex align-content-center justify-content-around">
+                      <p>Then</p>
+                      <p>28C</p>
+                      <span>Icon</span>
+                  </div>
+                  <div class="card card_forecast d-inline-block text-light d-flex align-content-center justify-content-around">
+                      <p>Then</p>
+                      <p>28C</p>
+                      <span>Icon</span>
+                  </div>
+                  <div class="card card_forecast d-inline-block text-light d-flex align-content-center justify-content-around">
+                      <p>Then</p>
+                      <p>28C</p>
+                      <span>Icon</span>
+                  </div>
+                  <!-- ------------------- -->
+              </div>
+          </div>
 
-    
-    
+          <!-- data-3 -->
+          <div class="other_data d-grid gap-4">
+              <div class="card flex-column p-2 flex-fill">
+                  <div class="card_title bg-primary">
+                      <h4> <span>Icon</span> Card Title</h4>
+                  </div>
+                  <div class="card-body p-0 bg-success flex-fill">
+                      <h2>3</h2>
+                      <p>Moderate</p>
+                      <p>Use sun protection until 16:00</p>
+                  </div>
+              </div>
+              <div class="card flex-column p-2 flex-fill">
+                  <div class="card_title bg-primary">
+                      <h4> <span>Icon</span> Card Title</h4>
+                  </div>
+                  <div class="card-body p-0 card-body--2 d-grid flex-fill">
+                      <div class="data--left">
+                          <h2>3 <span>MPH</span></h2>
+                          <hr>
+                          <h2>9 <span>MPH</span></h2>
+                      </div>
+                      <div class="data--right"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </main> 
+
     <script type="module" src="./scripts/domElements.js"></script>
     <script type="module" src="./scripts/main.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
-
