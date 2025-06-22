@@ -18,11 +18,11 @@ const initApp = async () => {
   console.log("Init App...");
 
   //get user current location
-  let userCurrentLocation = await getUserCurrentLocation();
-  console.log("user current location >>", userCurrentLocation);
+  // let userCurrentLocation = await getUserCurrentLocation();
+  // console.log("user current location >>", userCurrentLocation);
 
   //forecast weather data(also have current weather)
-  const forecastWeatherData = await getForecastWeather(userCurrentLocation);
+  const forecastWeatherData = await getForecastWeather();
   console.log("forecastWeatherData", forecastWeatherData);
   
   //searched weather
