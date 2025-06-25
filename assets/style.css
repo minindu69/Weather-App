@@ -336,18 +336,19 @@ hr{
         border-radius: 0rem !important;
     }
 
-    .other_content{
-        /* padding: 0rem; */
-    }
   
 }
-@media (max-width: 370px) {
+@media (max-width: 390px) {
 
     .right_section{
         grid-template-rows: repeat(3, max-content);
     }
 
     .other_data_statics{
+        grid-template-columns: 1fr;
+    }
+
+    .other_content{
         grid-template-columns: 1fr;
     }
   
