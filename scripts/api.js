@@ -1,5 +1,7 @@
 "use strict";
 
+console.log('api executed');
+
 //get user Geolocation
 const fetchUserLocation = async () => {
   if (!navigator.geolocation) {
