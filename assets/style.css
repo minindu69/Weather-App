@@ -156,7 +156,7 @@ input:focus{
 }
 
 .card{
-    min-width: fit-content;
+    /* min-width: fit-content; */
 }
 
 /* right section */
