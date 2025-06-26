@@ -11,9 +11,9 @@ const initApp = async () => {
 
   console.log("Init App...");
   displayCurrentLocation();
-  // displayCurrentWeather();
-  // displayForecast();
-  displaySearchedWeather();
+  displayCurrentWeather();
+  displayForecast();
+  // displaySearchedWeather();
 
 };
 

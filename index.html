@@ -34,7 +34,7 @@
 
                     <input type="text" id="search-input" class="form-control search_glass_effect border-0 outline-0 shadow-none text-white" placeholder="Enter location" aria-label="Enter locationn" aria-describedby="button-addon2">
 
-                    <button class="btn search_btn border-0 ms-0 ps-0 search_glass_effect" type="button" id="button-addon2">
+                    <button id="search_btn" class="btn search_btn border-0 ms-0 ps-0 search_glass_effect" type="button" id="button-addon2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgba(195, 219, 255, 0.54)" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                           </svg>
@@ -129,8 +129,8 @@
                     </h4>
                 </div>
                 <hr class="ms-2 me-2">
-                <div class="data flex-fill p-2 ps-0 py-4 ms-2 me-2 pe-0 d-flex align-content-center justify-content-start gap-4">
-                    <div class="card card_forecast glass-card-forecast-data d-inline-block text-light d-flex align-content-center justify-content-around">
+                <div class="data data_forecast-hourly flex-fill p-2 ps-0 py-4 ms-2 me-2 pe-0 d-flex align-content-center justify-content-start gap-4">
+                    <div class="card card_forecast card_forecast--hourly glass-card-forecast-data d-inline-block text-light d-flex align-content-center justify-content-around">
                         <p>Now</p>
                         <p>28C</p>
                         <span>Icon</span>
@@ -177,7 +177,7 @@
                     <h4 class="mb-0 forecast-title">10-DAY FORECAST</h4>
                 </div>
                 <hr class="ms-2 me-2">
-                <div class="data flex-fill p-2 ps-0 py-4 ms-2 me-2 pe-0 d-flex align-content-center justify-content-start gap-4">
+                <div class="data data-forecast-daliy flex-fill p-2 ps-0 py-4 ms-2 me-2 pe-0 d-flex align-content-center justify-content-start gap-4">
                     <div class="card card_forecast glass-card-forecast-data d-inline-block text-light d-flex align-content-center justify-content-around">
                         <p>Now</p>
                         <p>28C</p>
@@ -227,8 +227,8 @@
                         <h4 class="mb-0 uv-title">UV INDEX</h4>
                     </div>
                     <div class="card-body flex-fill">
-                        <h2 style="font-size: 3rem;">3</h2>
-                        <p>Moderate</p>
+                        <h2 class="uv-txt" style="font-size: 3rem;">3</h2>
+                        <p class="uv-status">Moderate</p>
                         <input type="range" class="range mb-4" min="0" max="100" step="1" id="slider">
                         <p>Use sun protection until 16:00</p>
                     </div>
@@ -247,7 +247,7 @@
                         <div class="data--left p-3">
                             <div class="data_left_statics--1 d-flex gap-2">
                                 <div class="speed">
-                                    <h2 style="font-size: 3rem;">3
+                                    <h2 class="wind-speed-txt" style="font-size: 3rem;">3
                                 </div>
                                 <div class="units d-flex flex-column align-items-center justify-content-center">
                                     <span>MPH</span></h2>
@@ -257,11 +257,11 @@
                             <hr>
                             <div class="data_left_statics--2 d-flex gap-2">
                                 <div class="speed">
-                                    <h2 style="font-size: 3rem;">9
+                                    <h2 class="gusts-txt" style="font-size: 3rem;">9
                                 </div>
                                 <div class="units d-flex flex-column align-items-center justify-content-center">
                                     <span>MPH</span></h2>
-                                    <span>Wind</span></h2>
+                                    <span>Gusts</span></h2>
                                 </div>
                             </div>
                         </div>
