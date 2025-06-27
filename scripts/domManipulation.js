@@ -1,6 +1,7 @@
 import {
   searchInput,
   searchBtn,
+  btnRefresh,
   weatherStatusWithLocation,
   currentTemp,
   recommendationTxt,
@@ -97,7 +98,7 @@ const hourlyAndDailyForecast = () => {
   cardDataObj.slice(0, 24).forEach((data) => {
     console.log(data);
 
-    let nextCard = `<div class="card card_forecast card_forecast--hourly glass-card-forecast-data d-inline-block text-light d-flex align-content-center justify-content-around">
+    let nextCard = `<div class="card card_forecast card_forecast--hourly glass-card-forecast-data d-inline-block text-light d-flex align-items-center justify-content-center">
                                       <p>${data.time}</p>
                                       <p>${data.temp}<sup >&deg;</sup>c</p>
                                       <img src="${data.icon}" alt=""style="width: 4rem; height: auto;">
@@ -113,7 +114,7 @@ const hourlyAndDailyForecast = () => {
   cardDataObj.forEach((data) => {
     console.log(data);
 
-    let nextCard = `<div class="card card_forecast glass-card-forecast-data d-inline-block text-light d-flex align-content-center justify-content-around">
+    let nextCard = `<div class="card card_forecast glass-card-forecast-data d-inline-block text-light d-flex align-items-center justify-content-center">
                         <p>${data.date}</p>
                         <p>${data.time}</p>
                         <p>${data.temp}<sup >&deg;</sup>c</p>
@@ -160,13 +161,17 @@ export const displaySearchedWeather = async (location = "Tangalla") => {
 };
 
 //all functions
-const allFunctions = [displayCurrentLocation, displayCurrentWeather];
+const allFunctions = [
+  displayCurrentLocation,
+  displayCurrentWeather,
+  displayForecast,
+];
 
 //update data obj
 const updateData = (dataObj) => {
-    currentLocation = dataObj.location;
-    currentWeather = dataObj.current;
-    dayForecast = dataObj.forecast.forecastday;
+    currentLocation = dataObj?.location;
+    currentWeather = dataObj?.current;
+    dayForecast = dataObj?.forecast.forecastday;
 }
 
 //set data to UI
@@ -177,19 +182,17 @@ const setAllData = () => {
     });
 }
 
+//search location
+searchBtn.addEventListener('click' ,() => {
+  const inputLocation = searchInput.value.trim();
+  console.log(inputLocation);
+  displaySearchedWeather(inputLocation);
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
+//Refresh location
+btnRefresh.addEventListener("click", () => {
+  displaySearchedWeather((searchInput.value = ""));
+});
 
 
 
