@@ -102,7 +102,7 @@ const hourlyAndDailyForecast = () => {
                                       <p>${data.time}</p>
                                       <p>${data.temp}<sup >&deg;</sup>c</p>
                                       <img src="${data.icon}" alt=""style="width: 4rem; height: auto;">
-      </div>;`;
+      </div>`
     allCardHourly += nextCard;
   });
 
@@ -187,11 +187,21 @@ searchBtn.addEventListener('click' ,() => {
   const inputLocation = searchInput.value.trim();
   console.log(inputLocation);
   displaySearchedWeather(inputLocation);
+  searchInput.value = "";
+});
+searchInput.addEventListener('keydown' ,(event) => {
+  if (event.key === 'Enter') {
+    const inputLocation = searchInput.value.trim();
+    console.log(inputLocation);
+    displaySearchedWeather(inputLocation);
+    searchInput.value = "";
+  }
 });
 
 //Refresh location
 btnRefresh.addEventListener("click", () => {
-  displaySearchedWeather((searchInput.value = ""));
+  searchInput.value = "";
+  displaySearchedWeather();
 });
 
 
