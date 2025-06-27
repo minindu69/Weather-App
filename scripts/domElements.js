@@ -1,3 +1,6 @@
+export const tooltipTriggerList = document.querySelectorAll(
+  '[data-bs-toggle="tooltip"]'
+);
 export const searchInput = document.getElementById("search-input");
 export const searchBtn = document.getElementById("search_btn");
 export const btnRefresh = document.getElementById("btn-refresh");

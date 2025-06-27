@@ -1,4 +1,5 @@
 import {
+  tooltipTriggerList,
   searchInput,
   searchBtn,
   btnRefresh,
@@ -26,14 +27,35 @@ import {
 
 console.log("dom manipulation executed");
 
-const searchedLocation = 'Tangalle';
+const searchedLocation = "Tangalle";
 const forecastDays = 10;
-  //get user current location
-  // let userCurrentLocation = await getUserCurrentLocation();
-  // console.log("user current location >>", userCurrentLocation);
+//get user current location
+// let userCurrentLocation = await getUserCurrentLocation();
+// console.log("user current location >>", userCurrentLocation);
+
+// const button = document.querySelector('[data-bs-toggle="tooltip"]');
+// const tooltipInstance = bootstrap.Tooltip.getInstance(btnRefresh);
+
+// btnRefresh.addEventListener("mouseleave", () => {
+//   tooltipInstance.hide(); // Hide tooltip when the cursor leaves
+// });
+
+//Activate tool tips
+const displayToolTips = () => {
+  // Initialize tooltips
+  const tooltipList = [...tooltipTriggerList].map(
+    (tooltipTriggerEl) =>
+      new bootstrap.Tooltip(tooltipTriggerEl, {
+        delay: { show: 0, hide: 0 }, // 0ms to show, 500ms delay to hide
+      })
+  );
+};
 
 //forecast weather data(also have current weather)
-let forecastWeatherData = await getForecastWeather(searchedLocation, forecastDays);
+let forecastWeatherData = await getForecastWeather(
+  searchedLocation,
+  forecastDays
+);
 console.log("forecastWeatherData", forecastWeatherData);
 
 let currentLocation = forecastWeatherData.location;
@@ -46,27 +68,27 @@ console.log("Display forecast", dayForecast);
 
 //recommendation text
 const loadRecommendationTxt = () => {
-    const dayForecastInfo = dayForecast[0].day;
+  const dayForecastInfo = dayForecast[0].day;
 
-    recommendationTxt.innerHTML = `Today, expect a ${
-      dayForecastInfo.condition.text
-    } day with temperatures reaching a maximum of ${
-      dayForecastInfo.maxtemp_c
-    }<sup>o</sup>c.Make sure to grab your ${
-      dayForecastInfo.condition.text.includes("rain")
-        ? "umbrella and raincoat"
-        : "water bottle"
-    } before heading out.`;
-}
+  recommendationTxt.innerHTML = `Today, expect a ${
+    dayForecastInfo.condition.text
+  } day with temperatures reaching a maximum of ${
+    dayForecastInfo.maxtemp_c
+  }<sup>o</sup>c.Make sure to grab your ${
+    dayForecastInfo.condition.text.includes("rain")
+      ? "umbrella and raincoat"
+      : "water bottle"
+  } before heading out.`;
+};
 
 //card data-left
 const setleftSideCardData = () => {
-    fleelsLikeTxt.textContent = currentWeather.feelslike_c;
-    precipitationTxt.textContent = currentWeather.precip_mm;
-    visibilityTxt.textContent = currentWeather.vis_miles;
-    humidityTxt.textContent = currentWeather.humidity;
-    dewPointTxt.textContent = currentWeather.dewpoint_c;
-}
+  fleelsLikeTxt.textContent = currentWeather.feelslike_c;
+  precipitationTxt.textContent = currentWeather.precip_mm;
+  visibilityTxt.textContent = currentWeather.vis_miles;
+  humidityTxt.textContent = currentWeather.humidity;
+  dewPointTxt.textContent = currentWeather.dewpoint_c;
+};
 
 //All card data
 const allCardData = () => {
@@ -85,7 +107,7 @@ const allCardData = () => {
   });
   console.log(cardDataObj);
   return cardDataObj;
-}
+};
 
 //hourly forecast
 const hourlyAndDailyForecast = () => {
@@ -102,7 +124,7 @@ const hourlyAndDailyForecast = () => {
                                       <p>${data.time}</p>
                                       <p>${data.temp}<sup >&deg;</sup>c</p>
                                       <img src="${data.icon}" alt=""style="width: 4rem; height: auto;">
-      </div>`
+      </div>`;
     allCardHourly += nextCard;
   });
 
@@ -126,16 +148,17 @@ const hourlyAndDailyForecast = () => {
 };
 
 export const displayCurrentLocation = () => {
-    weatherStatusWithLocation.innerHTML = `${currentLocation.name}
+  weatherStatusWithLocation.innerHTML = `${currentLocation.name}
     <p class="fs-2">${currentWeather.condition.text}</p>
     <img src="${currentWeather.condition.icon}" style="width: 5rem; height: auto;"> 
-    `;    
-}
+    `;
+};
 
 export const displayCurrentWeather = () => {
   currentTemp.innerHTML = `${currentWeather.temp_c}<sup >&deg;</sup>c`;
   loadRecommendationTxt();
   setleftSideCardData();
+  // displayToolTips();
 
   //set uv data
   uvTxt.textContent = currentWeather.uv;
@@ -143,12 +166,11 @@ export const displayCurrentWeather = () => {
   //set wind data
   windSpeedTxt.textContent = currentWeather.wind_mph;
   gustsTxt.textContent = currentWeather.gust_mph;
-  
-}
+};
 
 export const displayForecast = () => {
   hourlyAndDailyForecast();
-}
+};
 
 export const displaySearchedWeather = async (location = "Tangalla") => {
   //searched weather
@@ -169,28 +191,28 @@ const allFunctions = [
 
 //update data obj
 const updateData = (dataObj) => {
-    currentLocation = dataObj?.location;
-    currentWeather = dataObj?.current;
-    dayForecast = dataObj?.forecast.forecastday;
-}
+  currentLocation = dataObj?.location;
+  currentWeather = dataObj?.current;
+  dayForecast = dataObj?.forecast.forecastday;
+};
 
 //set data to UI
 const setAllData = () => {
-    console.log('object');
-    allFunctions.forEach(func => {
-        func();
-    });
-}
+  console.log("object");
+  allFunctions.forEach((func) => {
+    func();
+  });
+};
 
 //search location
-searchBtn.addEventListener('click' ,() => {
+searchBtn.addEventListener("click", () => {
   const inputLocation = searchInput.value.trim();
   console.log(inputLocation);
   displaySearchedWeather(inputLocation);
   searchInput.value = "";
 });
-searchInput.addEventListener('keydown' ,(event) => {
-  if (event.key === 'Enter') {
+searchInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
     const inputLocation = searchInput.value.trim();
     console.log(inputLocation);
     displaySearchedWeather(inputLocation);
@@ -203,7 +225,3 @@ btnRefresh.addEventListener("click", () => {
   searchInput.value = "";
   displaySearchedWeather();
 });
-
-
-
-

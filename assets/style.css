@@ -46,6 +46,11 @@ body {
   background-color: transparent; /* Makes the scrollbar track transparent */
 }
 
+#btn-refresh:focus{
+    outline: none;
+    border: none;
+}
+
 main {
   width: 70% !important;
   height: max-content;
@@ -349,6 +354,15 @@ hr {
 
   .other_content {
     padding: 0rem 4rem;
+  }
+}
+@media (max-width: 576px) {
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Makes the scrollbar thumb transparent */
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent; /* Makes the scrollbar track transparent */
   }
 }
 @media (max-width: 450px) {
