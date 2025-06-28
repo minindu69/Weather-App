@@ -14,6 +14,9 @@ import {
   dataForecastHourly,
   dataForecastDaliy,
   uvTxt,
+  uvStatus,
+  uvSlider,
+  uvRecomendation,
   windSpeedTxt,
   gustsTxt,
 } from "./domElements.js";
@@ -93,7 +96,7 @@ const setleftSideCardData = () => {
 //All card data
 const allCardData = () => {
   const allCardData = dayForecast.flatMap((day) => day.hour);
-  console.log("hourlyData", allCardData);
+  // console.log("hourlyData", allCardData);
 
   //date, time and icon array
   const cardDataObj = allCardData.map((data) => {
@@ -105,7 +108,7 @@ const allCardData = () => {
     ].flat();
     return { date, time, temp, icon };
   });
-  console.log(cardDataObj);
+  // console.log(cardDataObj);
   return cardDataObj;
 };
 
@@ -118,7 +121,7 @@ const hourlyAndDailyForecast = () => {
 
   //hourly data
   cardDataObj.slice(0, 24).forEach((data) => {
-    console.log(data);
+    // console.log(data);
 
     let nextCard = `<div class="card card_forecast card_forecast--hourly glass-card-forecast-data d-inline-block text-light d-flex align-items-center justify-content-center">
                                       <p>${data.time}</p>
@@ -134,7 +137,7 @@ const hourlyAndDailyForecast = () => {
 
   //10 days data
   cardDataObj.forEach((data) => {
-    console.log(data);
+    // console.log(data);
 
     let nextCard = `<div class="card card_forecast glass-card-forecast-data d-inline-block text-light d-flex align-items-center justify-content-center">
                         <p>${data.date}</p>
@@ -146,6 +149,81 @@ const hourlyAndDailyForecast = () => {
   });
   dataForecastDaliy.innerHTML = allCard10Days;
 };
+
+//generate uv recomendation
+const getUvRecomendation = (uvStatus) => {
+  switch (uvStatus) {
+    case "Low":
+         return "Minimal risk to the average person. No protection required";
+    case "Moderate":
+        return "Low to moderate risk. Use sunscreen, wear sunglasses, and seek shade during midday";
+    case "High":
+        return "High risk of harm from unprotected sun exposure. Use SPF 30+ sunscreen and avoid midday sun";
+    case "Very High":
+        return "Very Very high risk. Extra protection needed. Avoid being outside during midday hours";
+    case "Extreme":
+        return "Extreme risk. Full protection required. Stay indoors or use protective measures against the sun";
+    default:
+        return "🤔";
+  }
+}
+
+//display uv recomendation and status
+const displayUVRecAndStatus = () => {
+  let uvStatusTxt = '';
+  //set uv data
+  uvTxt.textContent = currentWeather.uv;
+  // console.log(Number(parseFloat(currentWeather.uv).toFixed(1)));
+  // uvTxt.textContent = 5;
+  let uvValue = currentWeather.uv;
+  switch (uvValue >= 0) {
+    case uvValue <= 2: {
+      //display status
+      uvStatusTxt = uvStatus.textContent = "Low";
+      console.log("Low");
+      //display range
+      uvSlider.value = Number(parseFloat(currentWeather.uv).toFixed(1)); // Ensures 1 decimal point
+      //recomendation
+      uvRecomendation.textContent = getUvRecomendation(uvStatusTxt);
+      break;
+    }
+    case uvValue <= 5:
+      //display status
+      uvStatusTxt = uvStatus.textContent = "Moderate";
+      //display range
+      uvSlider.value = Number(parseFloat(currentWeather.uv).toFixed(1)); // Ensures 1 decimal point
+      //recomendation
+      uvRecomendation.textContent = getUvRecomendation(uvStatusTxt);
+      break;
+    case uvValue <= 7:
+      //display status
+      uvStatusTxt = uvStatus.textContent = "High";
+      //display range
+      uvSlider.value = Number(parseFloat(currentWeather.uv).toFixed(1)); // Ensures 1 decimal point
+      //recomendation
+      uvRecomendation.textContent = getUvRecomendation(uvStatusTxt);
+      break;
+    case uvValue <= 10:
+      //display status
+      uvStatusTxt = uvStatus.textContent = "Very High";
+      //display range
+      uvSlider.value = Number(parseFloat(currentWeather.uv).toFixed(1)); // Ensures 1 decimal point
+      console.log(uvSlider.value);
+      //recomendation
+      uvRecomendation.textContent = getUvRecomendation(uvStatusTxt);
+      break;
+    case uvValue > 10:
+      //display status
+      uvStatusTxt = uvStatus.textContent = "Extreme";
+      //display range
+      uvSlider.value = Number(parseFloat(currentWeather.uv).toFixed(1)); // Ensures 1 decimal point
+      //recomendation
+      uvRecomendation.textContent = getUvRecomendation(uvStatusTxt);
+      break;
+    default:
+      return "Unknown 🤔";
+  }
+}
 
 export const displayCurrentLocation = () => {
   weatherStatusWithLocation.innerHTML = `${currentLocation.name}
@@ -161,7 +239,8 @@ export const displayCurrentWeather = () => {
   // displayToolTips();
 
   //set uv data
-  uvTxt.textContent = currentWeather.uv;
+  // uvTxt.textContent = currentWeather.uv;
+  displayUVRecAndStatus();
 
   //set wind data
   windSpeedTxt.textContent = currentWeather.wind_mph;

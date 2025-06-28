@@ -16,6 +16,9 @@ export const dataForecastHourly = document.querySelector(".data_forecast-hourly"
 export const dataForecastDaliy = document.querySelector(".data-forecast-daliy");
 export const cardForecastHourly = document.querySelector(".card_forecast--hourly");
 export const uvTxt = document.querySelector(".uv-txt");
+export const uvStatus = document.querySelector(".uv-status");
+export const uvSlider = document.getElementById("slider");
+export const uvRecomendation = document.querySelector(".uv-rec");
 export const windSpeedTxt = document.querySelector(".wind-speed-txt");
 export const gustsTxt = document.querySelector(".gusts-txt");
 

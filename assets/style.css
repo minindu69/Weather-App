@@ -306,7 +306,7 @@ hr {
   background-color: #c6e4ff;
   border: 2px solid #70a9ff;
   border-radius: 50%;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .card_forecast {
